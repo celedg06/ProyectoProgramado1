@@ -98,7 +98,13 @@ public class ListaCircular<T extends Atleta> {
     }
 
     public boolean correr() {
-        // Ahora lo termino :)
+        if (esVacia() || ultimo.siguiente == ultimo) {
+            JOptionPane.showMessageDialog(null, "Atletas insuficientes");
+            return false;
+        }
+       
+        ultimo = ultimo.siguiente;
+
         return false;
     }
 

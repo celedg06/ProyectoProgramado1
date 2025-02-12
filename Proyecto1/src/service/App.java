@@ -100,7 +100,7 @@ public class App {
                         break;
 
                     case 6:
-
+                        lista.correr();
                         break;
 
                     case 7:
@@ -120,3 +120,4 @@ public class App {
 
     }
 } // LLave de toda la clase
+
