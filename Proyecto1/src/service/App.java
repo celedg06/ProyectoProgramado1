@@ -8,7 +8,7 @@ import model.ListaCircular;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        String menu = "Menú\n1. Agregar Atleta\n2. Buscar Atleta\n3. Mostrar Posiciones\n4. Modificar Posiciones\n5. Eliminar Atleta\n6. Correr\n7. Salir";
+        String menu = "Menú\n1. Agregar Atleta\n2. Buscar Atleta\n3. Mostrar Posiciones\n4. Modificar Posiciones\n5. Eliminar Atleta\n6. Correr\n7. Pasar Competidor\n8. Simular Carrera\n9. Salir";
         int op = 0;
         ListaCircular<Atleta> lista = new ListaCircular<>();
         String nombre;
@@ -59,25 +59,26 @@ public class App {
                         break;
 
                     case 4:
-					try {
-						num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del atleta: "));
-						do {
-							nombre = JOptionPane.showInputDialog("Ingrese el nombre por el que quiere modificar al  atleta " + num +":");
-							if (nombre == null || nombre.trim().isEmpty()) {
-								JOptionPane.showMessageDialog(null,
-										"El nombre no puede estar vacío. Inténtelo de nuevo.", "Error",
-										JOptionPane.INFORMATION_MESSAGE);
-							}
-						} while (nombre == null || nombre.trim().isEmpty());
+                        try {
+                            num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del atleta: "));
+                            do {
+                                nombre = JOptionPane.showInputDialog(
+                                        "Ingrese el nombre por el que quiere modificar al  atleta " + num + ":");
+                                if (nombre == null || nombre.trim().isEmpty()) {
+                                    JOptionPane.showMessageDialog(null,
+                                            "El nombre no puede estar vacío. Inténtelo de nuevo.", "Error",
+                                            JOptionPane.INFORMATION_MESSAGE);
+                                }
+                            } while (nombre == null || nombre.trim().isEmpty());
 
-						lista.modificarNombre(num, nombre);
-					} catch (NumberFormatException nfe) {
-						JOptionPane.showMessageDialog(null,
-								"Error: Debe ingresar un número válido para el número del atleta", "Error",
-								JOptionPane.ERROR_MESSAGE);
-					}
-					break;
-                    
+                            lista.modificarNombre(num, nombre);
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Error: Debe ingresar un número válido para el número del atleta", "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+
                     case 5:
                         try {
                             if (lista.esVacia()) {
@@ -104,10 +105,34 @@ public class App {
                         break;
 
                     case 7:
+                        try {
+                            int num1 = Integer
+                                    .parseInt(JOptionPane.showInputDialog("Ingrese el número del atleta uno: "));
+                            int num2 = Integer
+                                    .parseInt(JOptionPane.showInputDialog("Ingrese el número del atleta dos: "));
+
+                            lista.pasarCompetidor(num1, num2);
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Error: Debe ingresar un número válido para el número del atleta", "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+
+                    case 8:
+                        if (lista.contarAtletas() < 3) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Debe haber al menos 3 atletas para simular la carrera.");
+                        } else {
+                            lista.simularCarrera();
+                        }
+                        break;
+
+                    case 9:
                         JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "Error: Opción no válida. Ingrese un número del 1 al 7",
+                        JOptionPane.showMessageDialog(null, "Error: Opción no válida. Ingrese un número del 1 al 9",
                                 "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                 }
@@ -116,8 +141,7 @@ public class App {
                 JOptionPane.showMessageDialog(null, "Error: Ingrese un número válido para seleccionar una opción",
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } while (op != 7);
+        } while (op != 9);
 
     }
 } // LLave de toda la clase
-
