@@ -63,7 +63,7 @@ public class App {
                             num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del atleta: "));
                             do {
                                 nombre = JOptionPane.showInputDialog(
-                                        "Ingrese el nombre por el que quiere modificar al  atleta " + num + ":");
+                                        "Ingrese el nombre por el que quiere modificar al atleta " + num + ":");
                                 if (nombre == null || nombre.trim().isEmpty()) {
                                     JOptionPane.showMessageDialog(null,
                                             "El nombre no puede estar vacío. Inténtelo de nuevo.", "Error",
