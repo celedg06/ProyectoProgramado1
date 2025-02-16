@@ -16,7 +16,6 @@ public class ListaCircular<T extends Atleta> {
         return (this.ultimo == null);
     }
 
-    // Preguntarle al profe por el <T>
     public ListaCircular<T> agregarAtleta(String nombre, int num) {
         Atleta atletaNuevo = new Atleta(nombre, num);
         Nodo<Atleta> nodoNuevo = new Nodo<Atleta>(atletaNuevo, null);
@@ -29,7 +28,7 @@ public class ListaCircular<T extends Atleta> {
             nodoNuevo.siguiente = ultimo.siguiente;
             ultimo.siguiente = nodoNuevo;
             ultimo = nodoNuevo;
-            JOptionPane.showMessageDialog(null, "Atleta: " + atletaNuevo + "I-ngresado correctamente");
+            JOptionPane.showMessageDialog(null, "Atleta: " + atletaNuevo + "Ingresado correctamente");
         }
 
         return this;
@@ -47,13 +46,12 @@ public class ListaCircular<T extends Atleta> {
         do {
             nodoSiguiente = nodoActual.siguiente;
             infoLista += "Detrás del atleta: " + nodoActual.atleta.getNumeroAtleta() + " va el: "
-                    + nodoSiguiente.atleta.getNumeroAtleta() + ", delante del: " + nodoActual.atleta.getNumeroAtleta()
-                    + " va el: " + nodoAnterior.atleta.getNumeroAtleta() + ".\n";
+                    + nodoAnterior.atleta.getNumeroAtleta() + ", delante del: " + nodoActual.atleta.getNumeroAtleta()
+                    + " va el: " + nodoSiguiente.atleta.getNumeroAtleta() + ".\n";
 
             nodoAnterior = nodoActual;
             nodoActual = nodoSiguiente;
         } while (nodoActual != ultimo.siguiente);
-        JOptionPane.showMessageDialog(null, "Primero: " + ultimo.siguiente.toString() + "Último: " + ultimo.toString());
         return infoLista;
     }
 
@@ -120,8 +118,7 @@ public class ListaCircular<T extends Atleta> {
         if (ultimo.siguiente != ultimo) {
             Nodo<Atleta> primero = ultimo.siguiente;  // Primer nodo actual
             Nodo<Atleta> nuevoUltimo = obtenerPenultimo(ultimo); // El que será el nuevo último
-    
-            // Ajustar punteros
+
             nuevoUltimo.siguiente = ultimo; // Penúltimo ahora apunta al último
             ultimo.siguiente = primero; // Último (nuevo primero) apunta al viejo primero
             ultimo = nuevoUltimo; // El nuevo último ahora es el penúltimo original
